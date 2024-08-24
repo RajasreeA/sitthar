@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -22,7 +21,6 @@ const formatNumber = (num) => {
 };
 
 export default function ListView({ data }) {
-  const theme = useTheme();
 
   return (
     <Card sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' } }}>

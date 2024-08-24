@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -14,7 +13,6 @@ import CardImage from '../assets/images/CardImage.png';
 import COLORS from '../constants/Colors.jsx';
 
 export default function MediaControlCard({ data }) {
-  const theme = useTheme();
   const [isPlaying, setIsPlaying] = React.useState(false);
   const audioRef = React.useRef(null);
 
