@@ -19,13 +19,27 @@ export default function MediaControlCard({ data }) {
   const audioRef = React.useRef(null);
 
   const handlePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play().catch(error => {
+          console.error('Audio play failed:', error);
+        });
+        setIsPlaying(true);
+      }
     }
-    setIsPlaying(!isPlaying);
   };
+
+  React.useEffect(() => {
+    // Log if audioRef is null or has issues
+    if (audioRef.current) {
+      console.log('Audio element is ready.');
+    } else {
+      console.error('Audio element is not available.');
+    }
+  }, [audioRef]);
 
   return (
     <Card sx={{ p: 1, border: "1px solid lightgrey" }}>
@@ -49,9 +63,9 @@ export default function MediaControlCard({ data }) {
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <IconButton aria-label="views">
-              <RemoveRedEyeIcon color="action" />
+              <RemoveRedEyeIcon sx={{ color: 'black' }} />
             </IconButton>
-            <Typography variant="caption" color="text.secondary">
+            <Typography variant="caption" color="text.primary">
               {data.views}
             </Typography>
           </Box>
@@ -60,22 +74,22 @@ export default function MediaControlCard({ data }) {
             onClick={handlePlayPause}
           >
             {isPlaying ? (
-              <PauseCircleIcon sx={{ height: 38, width: 38 }} />
+              <PauseCircleIcon sx={{ height: 38, width: 38, color: 'black' }} />
             ) : (
-              <PlayCircleIcon sx={{ height: 38, width: 38 }} />
+              <PlayCircleIcon sx={{ height: 38, width: 38, color: 'black' }} />
             )}
           </IconButton>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <IconButton aria-label="favorites">
-              <FavoriteIcon />
+              <FavoriteIcon sx={{ color: 'black' }} />
             </IconButton>
-            <Typography variant="caption" color="text.secondary">
+            <Typography variant="caption" color="text.primary">
               {data.likes}
             </Typography>
           </Box>
         </Box>
       </Box>
-      <audio ref={audioRef} src="../assets/audio/audio.mp3" />
+      <audio ref={audioRef} src="/assets/audio/audio.mp3" preload="auto" />
     </Card>
   );
 }
