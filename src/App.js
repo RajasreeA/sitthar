@@ -1,10 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import PrimarySearchAppBar from './components/AppBar';
+import MediaControlCard from './components/Card';
+import DataGridDemo from './components/DataGrid';
+import ListView from './components/ListView';
+import CompactListView from './pages/CompactListView';
+import SpacingGrid from './pages/GridView';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <CompactListView/> */}
+      {/* <PrimarySearchAppBar/> */}
+      {/* <MediaControlCard/> */}
+      <SpacingGrid/>
+      {/* <DataGridDemo/> */}
+      {/* <ListView/> */}
+      {/* <DataGridDemo/> */}
+      {/* <ListView/> */}
+      
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +31,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }
